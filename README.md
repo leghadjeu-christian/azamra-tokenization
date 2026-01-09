@@ -1,73 +1,110 @@
-# Welcome to your Lovable project
+# Azamra T Platform
 
-## Project info
+## Project Description
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The **Azamra T Platform** is a Minimum Viable Product (MVP) designed to demonstrate the tokenization of real-world assets. It provides a web interface for managing and showcasing various asset-backed tokens, allowing users to view available tokens in a marketplace and manage their personal portfolios. The platform includes administrative functionalities for creating and managing tokens, ensuring a controlled environment for asset representation.
 
-## How can I edit this code?
+## Features (MVP)
 
-There are several ways of editing your application.
+*   **User Authentication**: Secure user registration and login powered by Clerk.
+*   **Admin Panel**: Dedicated section for administrators to create, view, edit, and manage asset tokens.
+*   **Token Management**: Creation of asset tokens, including details like name, symbol, description, asset class, price, yield, supply, and minimum investment.
+*   **Public Marketplace**: A browsable list of active asset tokens available to all users.
+*   **Asset Detail Pages**: Individual pages for each token displaying comprehensive information.
+*   **User Dashboard/Portfolio**: A personalized view for authenticated users to see their owned tokens and portfolio allocation.
+*   **Responsive Design**: Built with modern web technologies for a seamless experience across devices.
 
-**Use Lovable**
+## Setup Instructions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+To get the **Azamra T Platform** up and running on your local machine, follow these steps:
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+*   **Node.js / Bun**: Ensure you have Node.js (v18 or higher) or Bun installed.
+*   **PostgreSQL**: A running PostgreSQL database instance is required.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 1. Clone the Repository
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+git clone https://github.com/leghadjeu-christian/azamra-tokenization.git
+cd azamra-tokenization
+```
 
-Follow these steps:
+### 2. Install Dependencies
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Using npm:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+Or using Bun:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+bun install
+```
+
+### 3. Environment Variables
+
+Create a `.env` file in the root of the project based on the `.env.example` file:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file and replace the placeholder values with your actual credentials:
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_publishable_key
+CLERK_SECRET_KEY=sk_test_your_clerk_secret_key
+DATABASE_URL="postgresql://user:password@host:5432/databasename?sslmode=require"
+DIRECT_URL="postgresql://user:password@host:5432/databasename?sslmode=require"
+```
+
+*   **Clerk Keys**: Obtain your `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` from your Clerk dashboard.
+*   **Database URLs**: Configure `DATABASE_URL` and `DIRECT_URL` to point to your PostgreSQL database. `DIRECT_URL` is used by Prisma for migrations.
+
+### 4. Database Setup
+
+Apply Prisma migrations to set up your database schema:
+
+```bash
+npm prisma migrate dev --name init
+```
+
+Seed the database with initial data (optional, but recommended for demo):
+
+```bash
+npm run db:seed
+```
+
+### 5. Run the Development Server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be accessible at `http://localhost:3001`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+## Demo Procedures
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1.  **Start the Application**: Ensure the application is running locally (`npm run dev`).
+2.  **Access the Marketplace**: Navigate to `http://localhost:3001/marketplace` to view active tokens without logging in.
+3.  **User Registration/Login**:
+    *   Go to `http://localhost:3001/sign-up` to create a new user account.
+    *   Alternatively, go to `http://localhost:3001/sign-in` to log in with an existing account.
+4.  **Admin Token Creation**:
+    *   After logging in, ensure your user account has admin privileges (this typically involves setting a role in your Clerk dashboard or a custom database field).
+    *   Navigate to `http://localhost:3001/admin/tokens/new` to create a new asset token. Fill in the details and submit.
+5.  **View User Dashboard**: Once logged in, navigate to `http://localhost:3001/dashboard` to see your personalized portfolio and other user-specific information.
+6.  **View Token Details**: Click on any token in the marketplace or dashboard to view its detailed information.
 
-## What technologies are used for this project?
+## Project Limitations (MVP Scope)
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+*   **No Blockchain Integration**: This MVP does not include actual blockchain integration for token issuance or transfer. Tokenization is simulated within the application's database.
+*   **Simplified Ownership**: Token ownership is managed purely within the application's database (`UserPortfolio` model) and does not represent actual on-chain asset ownership.
+*   **Basic Authorization**: Admin access for token creation is based on a simple check (e.g., `requireAdmin` function). A more robust role-based access control (RBAC) system would be needed for production.
+*   **No Trading Functionality**: The platform currently lacks features for buying, selling, or exchanging tokens.
+*   **Limited Asset Classes**: While `assetClass` is a field, the current UI and logic might not fully differentiate or provide specific functionalities for each asset class beyond display.
+*   **Scalability**: While Next.js and Prisma provide a good foundation, the current implementation might require further optimization for high-traffic production environments.
