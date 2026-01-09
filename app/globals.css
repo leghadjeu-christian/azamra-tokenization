@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RWA Tokenisation Platform - Securitize-Inspired Enterprise Design System */
+/* Clean, institutional fintech aesthetic with white backgrounds and strong typography */
+
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Teal/Navy institutional palette */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 15%;
+
+    /* Card surfaces with subtle warmth */
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    /* Primary - Deep teal for institutional trust */
+    --primary: 174 62% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Soft gray for subtle UI */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 25%;
+
+    /* Muted - Light backgrounds */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 50%;
+
+    /* Accent - Light teal highlight */
+    --accent: 174 40% 95%;
+    --accent-foreground: 174 62% 25%;
+
+    /* Destructive - Muted red for errors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success - For positive metrics */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning - For alerts */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Borders and inputs - Very subtle */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 174 62% 35%;
+
+    --radius: 0.5rem;
+
+    /* Chart colors */
+    --chart-1: 174 62% 35%;
+    --chart-2: 220 70% 50%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 280 65% 60%;
+
+    /* Hero overlay */
+    --hero-overlay: 220 20% 10%;
+
+    /* Sidebar - Light theme */
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 220 20% 25%;
+    --sidebar-primary: 174 62% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 174 40% 95%;
+    --sidebar-accent-foreground: 174 62% 25%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 174 62% 35%;
+  }
+
+  /* No dark mode - enterprise light theme only */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Strong heading hierarchy */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  h5 {
+    @apply text-lg font-medium;
+  }
+}
+
+@layer components {
+
+  /* Enterprise Hero Section */
+  .hero-section {
+    @apply relative min-h-[90vh] flex items-center justify-center overflow-hidden;
+    background: linear-gradient(to bottom,
+        hsl(var(--hero-overlay) / 0.7) 0%,
+        hsl(var(--hero-overlay) / 0.85) 100%);
+  }
+
+  .hero-content {
+    @apply relative z-10 text-center px-4 max-w-5xl mx-auto;
+  }
+
+  .hero-title {
+    @apply text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-tight mb-6;
+  }
+
+  .hero-subtitle {
+    @apply text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed;
+  }
+
+  /* Stat Cards */
+  .stat-card {
+    @apply bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .stat-value {
+    @apply text-3xl md:text-4xl font-bold text-foreground;
+  }
+
+  .stat-label {
+    @apply text-sm text-muted-foreground mt-1;
+  }
+
+  /* Asset Cards - Securitize style */
+  .asset-card {
+    @apply bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .asset-card-image {
+    @apply h-48 bg-secondary flex items-center justify-center overflow-hidden;
+  }
+
+  .asset-card-content {
+    @apply p-6;
+  }
+
+  .asset-card-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent text-accent-foreground;
+  }
+
+  .asset-card-title {
+    @apply text-lg font-semibold text-foreground mt-3 mb-2;
+  }
+
+  .asset-card-description {
+    @apply text-sm text-muted-foreground line-clamp-2;
+  }
+
+  .asset-card-metrics {
+    @apply grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-border;
+  }
+
+  .asset-metric {
+    @apply text-center;
+  }
+
+  .asset-metric-value {
+    @apply text-lg font-bold text-foreground;
+  }
+
+  .asset-metric-label {
+    @apply text-xs text-muted-foreground;
+  }
+
+  /* Section styling */
+  .section {
+    @apply py-16 md:py-24 px-4;
+  }
+
+  .section-header {
+    @apply text-center max-w-3xl mx-auto mb-12 md:mb-16;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-foreground mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted-foreground;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-foreground/80 hover:text-foreground font-medium transition-colors;
+  }
+
+  .nav-link-active {
+    @apply text-primary;
+  }
+
+  /* Tables */
+  .data-table {
+    @apply w-full;
+  }
+
+  .data-table th {
+    @apply text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider py-3 px-4 bg-secondary border-b border-border;
+  }
+
+  .data-table td {
+    @apply py-4 px-4 border-b border-border;
+  }
+
+  .data-table tr:hover td {
+    @apply bg-secondary/50;
+  }
+
+  /* Dashboard Metrics */
+  .dashboard-card {
+    @apply bg-card rounded-xl border border-border p-6;
+  }
+
+  .dashboard-metric {
+    @apply text-2xl md:text-3xl font-bold text-foreground;
+  }
+
+  .dashboard-label {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Positive/Negative indicators */
+  .text-positive {
+    @apply text-[hsl(var(--success))];
+  }
+
+  .text-negative {
+    @apply text-destructive;
+  }
+
+  /* Container variants */
+  .container-lg {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-md {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-[hsl(220, 70%, 50%)] bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
