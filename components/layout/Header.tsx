@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { UserButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Wallet } from 'lucide-react';
+import { ModeToggle } from '@/components/theme-toggle';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -59,6 +60,7 @@ export const Header = () => {
                   Wallet
                 </Link>
               </Button>
+              <ModeToggle />
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
             <SignedOut>
@@ -68,6 +70,7 @@ export const Header = () => {
               <Button size="sm" asChild>
                 <Link href="/sign-up">Get Started</Link>
               </Button>
+              <ModeToggle />
             </SignedOut>
           </div>
 
@@ -103,25 +106,33 @@ export const Header = () => {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 px-4 flex flex-col space-y-2">
+              <div className="pt-4 border-t border-border">
                 <SignedIn>
-                  <Button variant="outline" className="w-full" asChild>
-                    <Link href="/wallet">
-                      <Wallet className="w-4 h-4 mr-2" />
-                      Wallet
-                    </Link>
-                  </Button>
-                  <div className="flex justify-center mt-2">
-                    <UserButton afterSignOutUrl="/" />
+                  <div className="px-4 flex flex-col space-y-2">
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link href="/wallet">
+                        <Wallet className="w-4 h-4 mr-2" />
+                        Wallet
+                      </Link>
+                    </Button>
+                    <div className="flex items-center justify-between">
+                      <UserButton afterSignOutUrl="/" />
+                      <ModeToggle />
+                    </div>
                   </div>
                 </SignedIn>
                 <SignedOut>
-                  <Button variant="outline" className="w-full" asChild>
-                    <Link href="/sign-in">Sign In</Link>
-                  </Button>
-                  <Button className="w-full" asChild>
-                    <Link href="/sign-up">Get Started</Link>
-                  </Button>
+                  <div className="px-4 flex flex-col space-y-2">
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link href="/sign-in">Sign In</Link>
+                    </Button>
+                    <Button className="w-full" asChild>
+                      <Link href="/sign-up">Get Started</Link>
+                    </Button>
+                    <div className="flex justify-center">
+                      <ModeToggle />
+                    </div>
+                  </div>
                 </SignedOut>
               </div>
             </nav>
