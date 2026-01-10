@@ -8,12 +8,6 @@ import { Menu, X, Wallet } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/marketplace', label: 'Marketplace' },
-  { href: '/dashboard', label: 'Dashboard' },
-];
-
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -34,20 +28,45 @@ export const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            <SignedOut>
+              {/* Guest users - only show nav on non-home pages */}
+              {pathname !== '/' && (
+                <>
+                  <Link
+                    href="/"
+                    className={cn(
+                      'text-sm font-medium transition-colors hover:text-primary',
+                      isActive('/') ? 'text-primary' : 'text-muted-foreground'
+                    )}
+                  >
+                    Home
+                  </Link>
+                </>
+              )}
+            </SignedOut>
+            
+            <SignedIn>
+              {/* Logged-in users - show only Marketplace and Dashboard */}
               <Link
-                key={link.href}
-                href={link.href}
+                href="/marketplace"
                 className={cn(
                   'text-sm font-medium transition-colors hover:text-primary',
-                  isActive(link.href)
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
+                  isActive('/marketplace') ? 'text-primary' : 'text-muted-foreground'
                 )}
               >
-                {link.label}
+                Marketplace
               </Link>
-            ))}
+              
+              <Link
+                href="/dashboard"
+                className={cn(
+                  'text-sm font-medium transition-colors hover:text-primary',
+                  isActive('/dashboard') ? 'text-primary' : 'text-muted-foreground'
+                )}
+              >
+                Dashboard
+              </Link>
+            </SignedIn>
           </nav>
 
           {/* Desktop Actions */}
@@ -88,21 +107,46 @@ export const Header = () => {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border animate-slide-up">
             <nav className="flex flex-col space-y-2">
-              {navLinks.map((link) => (
+              <SignedOut>
+                {/* Guest users - only show nav on non-home pages */}
+                {pathname !== '/' && (
+                  <Link
+                    href="/"
+                    className={cn(
+                      'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+                      isActive('/') ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-secondary'
+                    )}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                )}
+              </SignedOut>
+              
+              <SignedIn>
+                {/* Logged-in users - show only Marketplace and Dashboard */}
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  href="/marketplace"
                   className={cn(
                     'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
-                    isActive(link.href)
-                      ? 'bg-accent text-accent-foreground'
-                      : 'text-muted-foreground hover:bg-secondary'
+                    isActive('/marketplace') ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-secondary'
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {link.label}
+                  Marketplace
                 </Link>
-              ))}
+                
+                <Link
+                  href="/dashboard"
+                  className={cn(
+                    'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+                    isActive('/dashboard') ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:bg-secondary'
+                  )}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+              </SignedIn>
               <div className="pt-4 px-4 flex flex-col space-y-2">
                 <SignedIn>
                   <Button variant="outline" className="w-full" asChild>
