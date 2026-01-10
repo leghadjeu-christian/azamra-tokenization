@@ -130,14 +130,6 @@ export default function Home() {
                                     <ArrowRight className="w-5 h-5 ml-2" />
                                 </Link>
                             </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="text-base px-8 bg-white/10 border-white/30 text-white hover:bg-white/20"
-                                asChild
-                            >
-                                <Link href="/sign-in">Sign In</Link>
-                            </Button>
                         </div>
                     </div>
                 </div>
@@ -297,14 +289,6 @@ export default function Home() {
                                 Get Started Free
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
-                        </Button>
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="text-base px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-                            asChild
-                        >
-                            <Link href="/sign-in">Sign In</Link>
                         </Button>
                     </div>
                 </div>

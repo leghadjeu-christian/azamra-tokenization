@@ -66,7 +66,7 @@ export const Header = () => {
                 <Link href="/sign-in">Sign In</Link>
               </Button>
               <Button size="sm" asChild>
-                <Link href="/sign-up">Get Started</Link>
+                <Link href="/sign-up">Sign Up</Link>
               </Button>
             </SignedOut>
           </div>
@@ -120,7 +120,7 @@ export const Header = () => {
                     <Link href="/sign-in">Sign In</Link>
                   </Button>
                   <Button className="w-full" asChild>
-                    <Link href="/sign-up">Get Started</Link>
+                    <Link href="/sign-up">Sign Up</Link>
                   </Button>
                 </SignedOut>
               </div>
