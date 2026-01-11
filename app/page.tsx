@@ -90,7 +90,13 @@ export default function Home() {
                     style={{ backgroundImage: `url(${heroImage.src})` }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/80 to-foreground/90" />
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background:
+                            "linear-gradient(to bottom, hsl(var(--hero-overlay) / 0.7) 0%, hsl(var(--hero-overlay) / 0.85) 100%)",
+                    }}
+                />
 
                 {/* Content */}
                 <div className="relative z-10 container-lg text-center py-20">

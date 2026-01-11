@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { UserButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Wallet } from 'lucide-react';
+import { ModeToggle } from '@/components/theme-toggle';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -18,7 +19,6 @@ export const Header = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container-lg">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
           {/* Logo */}
           <div className="flex items-center">
             <SignedIn>
@@ -91,6 +91,7 @@ export const Header = () => {
                   Wallet
                 </Link>
               </Button>
+              <ModeToggle />
               <UserButton afterSignOutUrl="/" />
             </SignedIn>
             <SignedOut>
@@ -100,6 +101,7 @@ export const Header = () => {
               <Button size="sm" asChild>
                 <Link href="/sign-up">Sign Up</Link>
               </Button>
+              <ModeToggle />
             </SignedOut>
           </div>
 
@@ -160,6 +162,7 @@ export const Header = () => {
                   Dashboard
                 </Link>
               </SignedIn>
+              
               <div className="pt-4 px-4 flex flex-col space-y-2">
                 <SignedIn>
                   <Button variant="outline" className="w-full" asChild>
@@ -168,8 +171,9 @@ export const Header = () => {
                       Wallet
                     </Link>
                   </Button>
-                  <div className="flex justify-center mt-2">
+                  <div className="flex items-center justify-between">
                     <UserButton afterSignOutUrl="/" />
+                    <ModeToggle />
                   </div>
                 </SignedIn>
                 <SignedOut>
@@ -179,6 +183,9 @@ export const Header = () => {
                   <Button className="w-full" asChild>
                     <Link href="/sign-up">Sign Up</Link>
                   </Button>
+                  <div className="flex justify-center">
+                    <ModeToggle />
+                  </div>
                 </SignedOut>
               </div>
             </nav>

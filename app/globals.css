@@ -77,7 +77,48 @@
     --sidebar-ring: 174 62% 35%;
   }
 
-  /* No dark mode - enterprise light theme only */
+  .dark {
+    /* Dark Theme Colors */
+    --background: 220 20% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 13%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 174 62% 45%;
+    --primary-foreground: 220 20% 10%;
+
+    --secondary: 220 14% 20%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 14% 20%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 174 40% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 25%;
+    --input: 220 13% 25%;
+    --ring: 174 62% 45%;
+
+    --hero-overlay: 220 20% 5%;
+
+    /* Sidebar - Dark theme */
+    --sidebar-background: 220 20% 12%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 174 62% 45%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 174 40% 20%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 13% 25%;
+    --sidebar-ring: 174 62% 45%;
+  }
 }
 
 @layer base {
