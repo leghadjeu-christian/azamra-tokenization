@@ -7,10 +7,20 @@ import { NextResponse } from "next/server";
 export async function isAdmin(): Promise<boolean> {
     const user = await currentUser();
     if (!user) return false;
-
+ 
     // Check if user has admin role in public metadata
     const publicMetadata = user.publicMetadata as { role?: string };
-    return publicMetadata?.role === "admin";
+    if (publicMetadata?.role === "admin") {
+        return true;
+    }
+
+    // For development, allow any authenticated user to be admin if NEXT_PUBLIC_ALLOW_DEV_ADMIN is true
+    if (process.env.NEXT_PUBLIC_ALLOW_DEV_ADMIN === "true") {
+        console.log("Development admin access granted.");
+        return true;
+    }
+
+    return false;
 }
 
 /**
