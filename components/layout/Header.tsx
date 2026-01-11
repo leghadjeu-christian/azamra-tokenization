@@ -19,12 +19,25 @@ export const Header = () => {
       <div className="container-lg">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">AT</span>
-            </div>
-            <span className="font-bold text-xl text-foreground">Azamra T Platform</span>
-          </Link>
+          {/* Logo */}
+          <div className="flex items-center">
+            <SignedIn>
+              <Link href="/dashboard" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-sm">AT</span>
+                </div>
+                <span className="font-bold text-xl text-foreground">Azamra T Platform</span>
+              </Link>
+            </SignedIn>
+            <SignedOut>
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-sm">AT</span>
+                </div>
+                <span className="font-bold text-xl text-foreground">Azamra T Platform</span>
+              </Link>
+            </SignedOut>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
